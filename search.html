@@ -1,0 +1,54 @@
+<!-- What I was given to fix -->
+
+<!-- <form class="flexrow" action="https://blah.com/jobs/search%3Fss%3D1" method="GET" target="_blank">
+<input type="text" name="searchKeyword" placeholder="Job Keyword (e.g. Sales)">
+<input type="text" name="searchLocation" placeholder="Location (e.g. Oakland)">
+
+</form>
+
+<div class="submit">Submit</div> -->
+
+<!-- My Fix -->
+
+<form class="flexrow" id="searchFilter" action="https://blah.com/jobs/search%3Fss%3D1">
+  <input type="text"
+    id="searchKeyword"
+    placeholder="Job Keyword (e.g. Sales)">
+  <select id="searchLocation" class="prettyList">
+    <option value="" selected="selected">
+    (All)
+    </option>
+    <option value="City 1">City_1</option>
+    <option value="City 2">City_2</option>
+    <option value="City 3">City_3</option>
+    <option value="City 4">City_4</option>
+  </select>
+  <input type="button"
+    value="Submit"
+    onclick="searchFilterFunc()"
+    onkeypress="keyFunc(e)">
+</form>
+
+<script>
+let keyFunc = function() {
+  if(e.keyCode === 13) {
+    searchFilterFunc();
+  }
+};
+
+let newString;
+let searchFilterFunc = function() {
+  let location = document.getElementById("searchLocation").value;
+  let keyword = document.getElementById("searchKeyword").value;
+  if(!location && !keyword) {
+    newString = 'https://blah.com/jobs/search?ss=1'
+  } else if(!location) {
+    newString = 'https://blah.com/jobs/search?ss=1' + '&searchKeyword=' + keyword
+  } else if(!keyword) {
+    newString = 'https://blah.com/jobs/search?ss=1' + '&searchLocation=' + location;
+  } else {
+    newString = 'https://blah.com/jobs/search?ss=1' + '&searchKeyword=' + keyword + '&searchLocation=' + location;
+  }
+  window.open(newString, '_blank');
+};
+</script>
